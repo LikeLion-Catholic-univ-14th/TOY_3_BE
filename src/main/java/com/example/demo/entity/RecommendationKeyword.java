@@ -14,10 +14,15 @@ import lombok.NoArgsConstructor;
 public class RecommendationKeyword {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="recommendation_keyword_id")
     private Long id;
 
-    private String keyword;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="tag_id")
-    private EmotionTag emotionTag;
+    @JoinColumn(name="base_tag_id")
+    private EmotionTag baseTag;
+    @ManyToOne
+    @JoinColumn(name = "recommended_tag_id")
+    private EmotionTag recommendedTag;
+
+
 }
