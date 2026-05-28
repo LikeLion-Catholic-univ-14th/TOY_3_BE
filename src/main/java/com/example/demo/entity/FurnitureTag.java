@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FurinitureTag {
+public class FurnitureTag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
