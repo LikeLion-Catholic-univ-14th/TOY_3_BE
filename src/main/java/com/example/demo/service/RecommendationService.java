@@ -17,16 +17,20 @@ public class RecommendationService {
     private final EmotionTagRepository emotionTagRepository;
     private final RecommendationKeywordRepository recommendationKeywordRepository;
 
-    public List<String> getRecommendations(String tagName) {
+    public List<String> getRecommendations(List<String> tagNames) {
 
-        EmotionTag tag = emotionTagRepository.findByName(tagName)
-                .orElseThrow();
+        return tagNames.stream()
+                .flatMap(tagName -> {
+                    EmotionTag tag = emotionTagRepository
+                            .findByName(tagName)
+                            .orElseThrow();
 
-        List<RecommendationKeyword> recommendations =
-                recommendationKeywordRepository.findByBaseTag(tag);
-
-        return recommendations.stream()
+                    return recommendationKeywordRepository
+                            .findByBaseTag(tag)
+                            .stream();
+                })
                 .map(r -> r.getRecommendedTag().getName())
+                .distinct()
                 .toList();
     }
 
