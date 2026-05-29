@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Furniture;
-import com.example.demo.entity.FurnitureTag;
+import com.example.demo.entity.FurinitureTag;
 import com.example.demo.entity.RecommendationKeyword;
 import com.example.demo.repository.CrudFurnitureRepository;
 import com.example.demo.repository.CrudFurnitureTagRepository;
@@ -33,9 +33,9 @@ public class RecommendationService {
     }
 
     public List<Furniture> getFurniture(Long tagId) {
-        List<FurnitureTag> furnitureTags = furnitureTagRepository.findByEmotionTag_Id(tagId);
+        List<FurinitureTag> furnitureTags = furnitureTagRepository.findByEmotionTag_Id(tagId);
         return furnitureTags.stream()
-                .map(FurnitureTag::getFurniture)
+                .map(FurinitureTag::getFurniture)
                 .collect(Collectors.toList());
     }
 }
