@@ -10,7 +10,6 @@ import java.util.List;
 public class FurnitureResponse {
     private Long id;
     private String title;
-    private Integer price;
     private String description;
     private String imageUrl;
 

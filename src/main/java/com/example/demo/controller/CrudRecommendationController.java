@@ -17,18 +17,18 @@ public class CrudRecommendationController {
     public CrudRecommendationController(RecommendationService recommendationService) {
         this.recommendationService = recommendationService;
     }
-
+/*
     @GetMapping("/recommend/keywords")
     public List<RecommendationKeyword> getKeywords(
-            @RequestParam Long tagId
+            @RequestParam String tagName
     ) {
-        return recommendationService.getKeywords(tagId);
-    }
+        return recommendationService.getKeywords(tagName);
+    }*/
 
     @GetMapping("/recommend/furniture")
     public List<Furniture> getFurniture(
-            @RequestParam Long tagId
+            @RequestParam List<String> tagNames
     ) {
-        return recommendationService.getFurniture(tagId);
+        return recommendationService.getFurniture(tagNames);
     }
 }

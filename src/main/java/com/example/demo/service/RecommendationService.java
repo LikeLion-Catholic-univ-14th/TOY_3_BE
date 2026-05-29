@@ -36,15 +36,22 @@ public class RecommendationService {
     private final CrudFurnitureRepository furnitureRepository;
 
 
-    public List<RecommendationKeyword> getKeywords(Long tagId) {
-        return crudRecommendationKeywordRepository.findByEmotionTag_Id(tagId);
+    public List<RecommendationKeyword> getKeywords(String tagName) {
+        EmotionTag tag= emotionTagRepository.findByName(tagName).orElseThrow();
+
+        return crudRecommendationKeywordRepository.findByEmotionTag_Id(tag.getId());
     }
 
-    public List<Furniture> getFurniture(Long tagId) {
-        List<FurnitureTag> furnitureTags = furnitureTagRepository.findByEmotionTag_Id(tagId);
+    public List<Furniture> getFurniture(List<String> tagNames) {
+        List<Long> tagIds = tagNames.stream()
+                .map(name -> emotionTagRepository.findByName(name).orElseThrow().getId())
+                .toList();
+
+        List<FurnitureTag> furnitureTags = furnitureTagRepository.findByEmotionTag_IdIn(tagIds);
         return furnitureTags.stream()
                 .map(FurnitureTag::getFurniture)
-                .collect(Collectors.toList());
+                .distinct()
+                .toList();
     }
 
 }
