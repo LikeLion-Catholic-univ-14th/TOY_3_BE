@@ -17,11 +17,11 @@ import java.util.Map;
 @RequestMapping("/api/ai")
 public class AiController {
     private final GeminiService geminiService;
-    @GetMapping("/description")
+    @PostMapping("/description")
     public String generateDescription(@RequestBody FurnitureCreateRequest request){
         return geminiService.generateDescription(
                 request.getTitle(),
-                request.getTagIds()
+                request.getFinalTag()
                         .stream()
                         .map(String::valueOf)
                         .toList()

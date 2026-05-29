@@ -13,6 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 public class FurnitureCreateRequest {
     private String title;
-    private Integer price;
-    private List<Long> tagIds;
+    private List<String> finalTag;
 }

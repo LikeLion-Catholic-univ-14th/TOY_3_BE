@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,11 +27,15 @@ public class FurnitureService {
     public FurnitureResponse createFurniture(FurnitureCreateRequest request){
 
 
-        if(request.getTagIds().size()>5){
+        if(request.getFinalTag().size()>5){
                 throw new IllegalArgumentException("태그는 최대 5개까지 선택 가능합니다.");
         }
 
-        List<EmotionTag> tags= emotionTagRepository.findAllById(request.getTagIds());
+        List<EmotionTag> tags = new ArrayList<>();
+        for (String tagName : request.getFinalTag()) {
+            emotionTagRepository.findByName(tagName)
+                    .ifPresent(tags::add);
+        }
         List<String> tagNames=tags.stream().map(EmotionTag::getName).toList();
         String aiDescription;
         try {
@@ -43,7 +48,6 @@ public class FurnitureService {
         }
         Furniture furniture=Furniture.builder()
                 .title(request.getTitle())
-                .price(request.getPrice())
                 .description(aiDescription)
                 .build();
         furnitureRepository.save(furniture);
