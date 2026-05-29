@@ -24,5 +24,9 @@ public class RecommendationKeyword {
     @JoinColumn(name = "recommended_tag_id")
     private EmotionTag recommendedTag;
 
+    private String keyword;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="tag_id")
+    private EmotionTag emotionTag;
 
 }

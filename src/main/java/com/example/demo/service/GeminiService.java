@@ -46,7 +46,7 @@ public class GeminiService {
 
         GeminiResponse response =
                 webClient.post()
-                        .uri("/v1beta/models/gemini-2.0-flash:generateContent?key="
+                        .uri("/v1beta/models/gemini-2.5-flash:generateContent?key="
                                 + apikey)
                         .bodyValue(request)
                         .retrieve()
