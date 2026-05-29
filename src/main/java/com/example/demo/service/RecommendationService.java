@@ -3,9 +3,9 @@ package com.example.demo.service;
 import com.example.demo.entity.Furniture;
 import com.example.demo.entity.FurnitureTag;
 import com.example.demo.entity.RecommendationKeyword;
-import com.example.demo.repository.FurnitureRepository;
-import com.example.demo.repository.FurnitureTagRepository;
-import com.example.demo.repository.RecommendationKeywordRepository;
+import com.example.demo.repository.CrudFurnitureRepository;
+import com.example.demo.repository.CrudFurnitureTagRepository;
+import com.example.demo.repository.CrudRecommendationKeywordRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class RecommendationService {
 
-    private final FurnitureTagRepository furnitureTagRepository;
-    private final RecommendationKeywordRepository recommendationKeywordRepository;
-    private final FurnitureRepository furnitureRepository;
+    private final CrudFurnitureTagRepository furnitureTagRepository;
+    private final CrudRecommendationKeywordRepository recommendationKeywordRepository;
+    private final CrudFurnitureRepository furnitureRepository;
 
     public RecommendationService(
-            FurnitureTagRepository furnitureTagRepository,
-            RecommendationKeywordRepository recommendationKeywordRepository,
-            FurnitureRepository furnitureRepository
+            CrudFurnitureTagRepository furnitureTagRepository,
+            CrudRecommendationKeywordRepository recommendationKeywordRepository,
+            CrudFurnitureRepository furnitureRepository
     ) {
         this.furnitureTagRepository = furnitureTagRepository;
         this.furnitureRepository = furnitureRepository;

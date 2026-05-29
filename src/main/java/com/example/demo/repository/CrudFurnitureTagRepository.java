@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FurnitureTagRepository extends JpaRepository<FurnitureTag, Long> {
+public interface CrudFurnitureTagRepository extends JpaRepository<FurnitureTag, Long> {
     List<FurnitureTag> findByEmotionTag_Id(Long tagId);
 }

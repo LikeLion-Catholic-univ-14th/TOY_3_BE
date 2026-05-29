@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class RecommendationController {
+public class CrudRecommendationController {
 
     private final RecommendationService recommendationService;
 
-    public RecommendationController(RecommendationService recommendationService) {
+    public CrudRecommendationController(RecommendationService recommendationService) {
         this.recommendationService = recommendationService;
     }
 
