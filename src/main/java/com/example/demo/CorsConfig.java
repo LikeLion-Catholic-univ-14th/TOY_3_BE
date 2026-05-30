@@ -18,7 +18,8 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "https://localhost:3000",
-                                "https://localhost:5173" )
+                                "https://localhost:5173",
+                                "https://moodspot.vercel.app")
                         .allowedMethods("*")
                         .allowedHeaders("*")
                         .allowCredentials(true);
